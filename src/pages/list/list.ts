@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StarlightCharList } from '../../services/client/starlight-charlist.service';
 import { Char } from '../../models/starlightdb/char';
+import { TypesPage } from '../types/types';
 
 @Component({
   selector: 'page-list',
@@ -32,7 +33,7 @@ export class ListPage implements OnInit {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
+    this.navCtrl.push(TypesPage, {
       item: item
     });
   }
