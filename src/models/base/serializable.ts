@@ -14,8 +14,9 @@ export class Serializable {
     /**
      * classにjsonデータを注入します
      *
-     * @param string  json
-     * @param boolean isCamelizeProp
+     * @param json
+     * @param boolean
+     * @param ignoreProp
      */
     public fillFromJSON(jsonObj, isCamelizeProp?: boolean, ignoreProp: Array<string> = []) {
         for (let propName in jsonObj) {
