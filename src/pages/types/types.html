@@ -3,26 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>{{char.kanji_spaced}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div class="avater" padding>
-    <img src="{{avaterHost}}/icon_char/{{char.chara_id}}.png">
-  </div>
-  <div padding>
-    <h3>
-      {{char.kanji_spaced}}
-      <sub>{{char.conventional}}</sub>
-    </h3>
-  </div>
-  <ion-list>
-    <ion-list-header>
-      モデルリスト
-    </ion-list-header>
-    <button ion-item *ngFor="let card of char.cards" (click)="itemTapped($event, card)">
-      {{card}}
-    </button>
-  </ion-list>
+  <ion-slides autoplay='1' pager parallax>
+    <ion-slide *ngFor="let card of char.cards">
+      <p class="number"># {{card}}</p>
+      <div class="type-img">
+        <img src="{{avaterHost}}/card/{{card}}.png" alt="Charactor type thumbnail">
+      </div>
+      <button ion-button class="btn" (click)="itemTapped($event, card)" margin-top>詳細へ</button>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
