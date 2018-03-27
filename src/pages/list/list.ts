@@ -14,10 +14,8 @@ export class ListPage implements OnInit {
   selectedItem: any;
   items: Array<Char> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private starlight: StarlightCharList, public loadingCtrl: LoadingController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private starlight: StarlightCharList, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     (async () => {
