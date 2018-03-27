@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <div class="avater" padding>
+    <img src="{{avaterHost}}/icon_char/{{char.chara_id}}.png">
+  </div>
   <div padding>
     <h3>
       {{char.kanji_spaced}}
@@ -15,6 +18,9 @@
     </h3>
   </div>
   <ion-list>
+    <ion-list-header>
+      モデルリスト
+    </ion-list-header>
     <button ion-item *ngFor="let card of char.cards" (click)="itemTapped($event, item)">
       {{card}}
     </button>

@@ -8,4 +8,7 @@ export namespace Hosts {
     // starlight db
     export const STARLIGHTDB = 'https://starlight.kirara.ca';
 
+    // starlight db avater
+    export const STARLIGHT_AVATER = 'https://truecolor.kirara.ca';
+
 }
