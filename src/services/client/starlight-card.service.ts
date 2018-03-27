@@ -5,48 +5,48 @@ import { Hosts } from '../../constants/host';
 import { Card } from '../../models/starlightdb/card';
 
 @Injectable()
-export class Starlight {
+export class StarlightCard {
 
-    public cards: Array<Card>;
+    public cards: Array<Card> = [];
 
     constructor(private http: Http) { }
 
     /**
      * カード取得
      *
-     * @param string name
+     * @param number name
      * @param string incProfile
      * @return void
      */
-    public fetchCard(cardNo: string, isRemoveFirst: boolean): void {
-        // request url
-        const requestUrl = Hosts.STARLIGHTDB + '/api/v1/card_t/' + cardNo;
+    public fetch(cardNo: number, isRemoveFirst: boolean) {
+        return new Promise(resolve => {
+            // request url
+            const requestUrl = Hosts.STARLIGHTDB + '/api/v1/card_t/' + cardNo;
 
-        // connection
-        this.http.get(requestUrl).subscribe(data => {
-            if (data.status !== 200) {
-                console.log(`Web api connection failure. url=[${requestUrl}]`);
-                return '';
-            }
+            // connection
+            this.http.get(requestUrl).subscribe(data => {
+                if (data.status !== 200) {
+                    console.log(`Web api connection failure. url=[${requestUrl}]`);
+                    return '';
+                }
 
-            // json to object
-            const res = data.json()['result'];
-            const ignoreFields = ['rarity', 'chara', 'skill', 'leadSkill', 'valist'];
+                // json to object
+                const res = data.json()['result'];
+                const ignoreFields = ['rarity', 'chara', 'skill', 'leadSkill', 'valist'];
 
-            const fetchedCards: Card[] = [];
-            for (const oneCard of res) {
-                const card = new Card();
-                card.fillFromJSON(oneCard, true, ignoreFields);
+                for (const oneCard of res) {
+                    const card = new Card();
+                    card.fillFromJSON(oneCard, false, ignoreFields);
+                    this.cards.push(card);
+                }
 
-                fetchedCards.push(card);
-            }
+                // 1件目は汎用的情報なのでオプションにより取り除く
+                if (isRemoveFirst) {
+                    this.cards.shift();
+                }
 
-            // 1件目は汎用的情報なのでオプションにより取り除く
-            if (isRemoveFirst) {
-                fetchedCards.shift();
-            }
-
-            this.cards = fetchedCards;
+                resolve(this.cards);
+            });
         });
     }
 

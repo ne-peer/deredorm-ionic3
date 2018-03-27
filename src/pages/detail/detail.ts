@@ -1,20 +1,35 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Char } from '../../models/starlightdb/char';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { StarlightCard } from '../../services/client/starlight-card.service';
+import { Card } from '../../models/starlightdb/card';
 
 @IonicPage()
 @Component({
   selector: 'page-detail',
   templateUrl: 'detail.html',
+  providers: [StarlightCard]
 })
-export class DetailPage {
+export class DetailPage implements OnInit {
 
   private chara_id: number;
-  private avaterHost: string;
+  private card: Card;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private client: StarlightCard,
+    private loadingCtrl: LoadingController) {
     this.chara_id = navParams.get('item');
     console.log(this.chara_id);
+  }
+
+  ngOnInit() {
+    (async () => {
+      let loading = this.loadingCtrl.create({ content: '読み込み中...' });
+      await loading.present();
+
+      await this.client.fetch(this.chara_id, false);
+      console.log(this.client.cards);
+
+      await loading.dismiss();
+    })();
   }
 
 }

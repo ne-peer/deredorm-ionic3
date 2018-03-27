@@ -23,7 +23,7 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     (async () => {
-      let loading = this.loadingCtrl.create({ content: 'ロード中...' });
+      let loading = this.loadingCtrl.create({ content: '読み込み中...' });
       await loading.present();
 
       await this.starlight.fetch();
