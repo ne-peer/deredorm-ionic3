@@ -10,10 +10,11 @@
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="star" item-start></ion-icon>
-      {{item.kanji_spaced}}
-      <div class="item-note" item-end>
-        {{item.chara_id}}
+      <!-- <ion-icon name="person" item-start></ion-icon> -->
+      <span class="name">{{item.kanji_spaced}}</span>
+      <span class="kana">{{item.kana_spaced}}</span>
+      <div class="id" item-end>
+        # {{item.chara_id}}
       </div>
     </button>
   </ion-list>
