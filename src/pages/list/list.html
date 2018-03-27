@@ -10,14 +10,15 @@
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
+      <ion-icon [name]="star" item-start></ion-icon>
+      {{item.kanji_spaced}}
       <div class="item-note" item-end>
-        {{item.note}}
+        {{item.chara_id}}
       </div>
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+    You navigated here from
+    <b>{{selectedItem.kanji_spaced}}</b>
   </div>
 </ion-content>

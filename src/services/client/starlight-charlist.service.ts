@@ -11,22 +11,26 @@ export class StarlightCharList {
 
     constructor(private http: Http) { }
 
-    public fetch(): void {
-        const url = Hosts.STARLIGHTDB + '/api/v1/list/char_t';
-        this.http.get(url).subscribe(data => {
-            if (data.status !== 200) {
-                console.log(`Web api connection failure. url=[${url}]`);
-                return;
-            }
+    public fetch(): Promise<any> {
+        return new Promise(resolve => {
+            const url = Hosts.STARLIGHTDB + '/api/v1/list/char_t';
+            this.http.get(url).subscribe(data => {
+                if (data.status !== 200) {
+                    console.log(`Web api connection failure. url=[${url}]`);
+                    return;
+                }
 
-            // json to object
-            const res = data.json()['result'];
+                // json to object
+                const res = data.json()['result'];
 
-            for (const detail of res) {
-                const char = new Char();
-                char.fillFromJSON(detail);
-                this.chars.push(char);
-            }
+                for (const detail of res) {
+                    const char = new Char();
+                    char.fillFromJSON(detail);
+                    this.chars.push(char);
+                }
+
+                resolve(this.chars);
+            });
         });
     }
 
