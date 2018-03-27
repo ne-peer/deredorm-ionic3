@@ -26,7 +26,8 @@ export class DetailPage implements OnInit {
       await loading.present();
 
       await this.client.fetch(this.chara_id, false);
-      console.log(this.client.cards);
+      this.card = await this.client.cards.shift();
+      console.log(this.card);
 
       await loading.dismiss();
     })();
