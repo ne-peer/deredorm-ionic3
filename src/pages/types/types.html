@@ -8,6 +8,12 @@
 </ion-header>
 
 <ion-content>
+  <div padding>
+    <h3>
+      {{char.kanji_spaced}}
+      <sub>{{char.conventional}}</sub>
+    </h3>
+  </div>
   <ion-list>
     <button ion-item *ngFor="let card of char.cards" (click)="itemTapped($event, item)">
       {{card}}

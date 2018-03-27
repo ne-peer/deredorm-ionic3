@@ -14,8 +14,8 @@ export class ListPage implements OnInit {
   selectedItem: any;
   items: Array<Char> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private starlight: StarlightCharList, public loadingCtrl: LoadingController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private starlight: StarlightCharList,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     (async () => {
@@ -30,7 +30,6 @@ export class ListPage implements OnInit {
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(TypesPage, {
       item: item
     });
