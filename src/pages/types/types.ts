@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Char } from '../../models/starlightdb/char';
 import { Hosts } from '../../constants/host';
+import { DetailPage } from '../detail/detail';
 
 @IonicPage()
 @Component({
@@ -19,8 +20,10 @@ export class TypesPage {
     console.log(this.char);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TypesPage');
+  itemTapped(event, cardNumber: number) {
+    this.navCtrl.push(DetailPage, {
+      item: cardNumber
+    });
   }
 
 }

@@ -21,7 +21,7 @@
     <ion-list-header>
       モデルリスト
     </ion-list-header>
-    <button ion-item *ngFor="let card of char.cards" (click)="itemTapped($event, item)">
+    <button ion-item *ngFor="let card of char.cards" (click)="itemTapped($event, card)">
       {{card}}
     </button>
   </ion-list>

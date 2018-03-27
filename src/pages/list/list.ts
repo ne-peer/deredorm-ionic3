@@ -33,7 +33,7 @@ export class ListPage implements OnInit {
     })();
   }
 
-  itemTapped(event, item) {
+  itemTapped(event, item: Char) {
     this.navCtrl.push(TypesPage, {
       item: item
     });
