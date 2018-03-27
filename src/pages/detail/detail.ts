@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StarlightCard } from '../../services/client/starlight-card.service';
 import { Card } from '../../models/starlightdb/card';
+import { Hosts } from '../../constants/host';
 
 @IonicPage()
 @Component({
@@ -13,11 +14,13 @@ export class DetailPage implements OnInit {
 
   private chara_id: number;
   private card: Card;
+  private avaterHost: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private client: StarlightCard,
     private loadingCtrl: LoadingController) {
     this.chara_id = navParams.get('item');
     console.log(this.chara_id);
+    this.avaterHost = Hosts.STARLIGHT_AVATER;
   }
 
   ngOnInit() {
