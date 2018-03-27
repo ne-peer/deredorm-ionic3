@@ -1,0 +1,53 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import { Hosts } from '../../constants/host';
+import { Card } from '../../models/starlightdb/card';
+
+@Injectable()
+export class Starlight {
+
+    public cards: Array<Card>;
+
+    constructor(private http: Http) { }
+
+    /**
+     * カード取得
+     *
+     * @param string name
+     * @param string incProfile
+     * @return void
+     */
+    public fetchCard(cardNo: string, isRemoveFirst: boolean): void {
+        // request url
+        const requestUrl = Hosts.STARLIGHTDB + '/api/v1/card_t/' + cardNo;
+
+        // connection
+        this.http.get(requestUrl).subscribe(data => {
+            if (data.status !== 200) {
+                console.log(`Web api connection failure. url=[${requestUrl}]`);
+                return '';
+            }
+
+            // json to object
+            const res = data.json()['result'];
+            const ignoreFields = ['rarity', 'chara', 'skill', 'leadSkill', 'valist'];
+
+            const fetchedCards: Card[] = [];
+            for (const oneCard of res) {
+                const card = new Card();
+                card.fillFromJSON(oneCard, true, ignoreFields);
+
+                fetchedCards.push(card);
+            }
+
+            // 1件目は汎用的情報なのでオプションにより取り除く
+            if (isRemoveFirst) {
+                fetchedCards.shift();
+            }
+
+            this.cards = fetchedCards;
+        });
+    }
+
+}
