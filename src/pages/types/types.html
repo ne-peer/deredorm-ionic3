@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides autoplay='0' pager parallax>
+  <ion-slides class="slider" effect='coverflow' pager parallax>
     <ion-slide *ngFor="let card of char.cards">
       <p class="number"># {{card}}</p>
       <div class="type-img">
