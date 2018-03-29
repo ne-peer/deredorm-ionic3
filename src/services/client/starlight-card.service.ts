@@ -32,11 +32,10 @@ export class StarlightCard {
 
                 // json to object
                 const res = data.json()['result'];
-                const ignoreFields = ['rarity', 'chara', 'skill', 'leadSkill', 'valist'];
 
                 for (const oneCard of res) {
                     const card = new Card();
-                    card.fillFromJSON(oneCard, false, ignoreFields);
+                    card.fillFromJSON(oneCard, false);
                     this.cards.push(card);
                 }
 
