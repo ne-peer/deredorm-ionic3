@@ -43,4 +43,8 @@ export class DetailPage implements OnInit {
       await loading.dismiss();
     })();
   }
+
+  openImg(path) {
+    window.open(this.avaterHost + '/spread/' + this.chara_id + '.png');
+  }
 }
