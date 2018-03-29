@@ -8,17 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides class="slider" pager autoplay="3000">
-    <ion-slide>
-      <img src="{{card?.spread_image_ref}}" alt="spread image">
-    </ion-slide>
-    <ion-slide>
-      <img src="{{avaterHost}}/spread/{{card?.evolution_id}}.png" alt="spread image">
-    </ion-slide>
-  </ion-slides>
-  <div class="btn-area">
-    <button ion-button (click)="openImg()" margin-top>画像を表示</button>
+  <div *ngIf="existImage(); else elseBlock">
+    <ion-slides class="slider" pager autoplay="3000">
+      <ion-slide>
+        <img src="{{card?.spread_image_ref}}" alt="spread image">
+      </ion-slide>
+      <ion-slide>
+        <img src="{{avaterHost}}/spread/{{card?.evolution_id}}.png" alt="spread image">
+      </ion-slide>
+    </ion-slides>
+    <div class="btn-area">
+      <button ion-button (click)="openImg()" margin-top>画像を表示</button>
+    </div>
   </div>
+  <ng-template #elseBlock>
+    <div class="no-img">
+      <p>No image ;D</p>
+      <p class="meta">* ノーマルカードにイメージはありません。</p>
+    </div>
+  </ng-template>
   <h5 class="title" margin-top padding>
     {{card?.name}}
   </h5>

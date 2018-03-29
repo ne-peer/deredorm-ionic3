@@ -44,7 +44,18 @@ export class DetailPage implements OnInit {
     })();
   }
 
+  existImage(): boolean {
+    if (
+      this.card !== undefined &&
+      this.card.hasOwnProperty("spread_image_ref") &&
+      this.card.spread_image_ref !== null
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   openImg(path) {
-    window.open(this.avaterHost + '/spread/' + this.chara_id + '.png');
+    window.open(this.avaterHost + "/spread/" + this.chara_id + ".png");
   }
 }

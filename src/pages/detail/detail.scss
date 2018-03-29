@@ -15,4 +15,15 @@ page-detail {
   .slider {
     height: 200px;
   }
+
+  .no-img {
+    padding: 20px 0px;
+    color: #aaa;
+    font-size: 22px;
+    text-align: center;
+
+    .meta {
+      font-size: 12px;
+    }
+  }
 }
