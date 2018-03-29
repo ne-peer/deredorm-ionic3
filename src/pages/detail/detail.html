@@ -11,8 +11,62 @@
   <div class="img">
     <img src="{{avaterHost}}/spread/{{chara_id}}.png" alt="Spread image">
   </div>
+  <div class="btn-area">
+    <button ion-button (click)="openImg()" margin-top>画像を表示</button>
+  </div>
   <h5 class="title" margin-top padding>
     {{card?.name}}
   </h5>
-  <button ion-button (click)="openImg()" margin-top>画像を表示</button>
+  <div class="spec">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          センター効果
+        </ion-col>
+        <ion-col col-7>
+          {{card?.lead_skill?.explain}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          スキル
+        </ion-col>
+        <ion-col col-7>
+          {{card?.skill?.explain}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          ボーカル（最大）
+        </ion-col>
+        <ion-col col-7>
+          {{card?.vocal_max}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          ダンス（最大）
+        </ion-col>
+        <ion-col col-7>
+          {{card?.dance_max}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          ヴィジュアル（最大）
+        </ion-col>
+        <ion-col col-7>
+          {{card?.visual_max}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          ライフ
+        </ion-col>
+        <ion-col col-7>
+          {{card?.hp_max}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
