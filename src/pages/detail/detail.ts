@@ -33,7 +33,7 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
     (async () => {
-      let loading = this.loadingCtrl.create({ content: "読み込み中..." });
+      let loading = this.loadingCtrl.create({ content: "読み込み中...", enableBackdropDismiss: true});
       await loading.present();
 
       await this.client.fetch(this.chara_id, false);
