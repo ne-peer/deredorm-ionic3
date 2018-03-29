@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)" [@flyInOut]="flyInOut">
       <ion-thumbnail item-start>
         <img src="{{avaterHost}}/icon_char/{{item.chara_id}}.png">
       </ion-thumbnail>
@@ -21,3 +21,14 @@
     </button>
   </ion-list>
 </ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-footer>
